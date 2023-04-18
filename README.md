@@ -19,11 +19,8 @@ $ npm install
   - http://localhost:8080/docs에서 지원하는 API 목록을 확인할 수 있습니다.
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
+# development mode
+$ npm run start:dev # or use 'npm start'
 
 # production mode
 $ npm run start:prod
