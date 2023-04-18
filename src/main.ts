@@ -2,11 +2,28 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DocumentBuilder, OpenAPIObject, SwaggerModule } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
+import { ValidationPipe } from '@nestjs/common';
+import { HttpExceptionFilter } from './common/filters/http.exception.filter';
 
 async function bootstrap() {
   // create app and get config
   const app = await NestFactory.create(AppModule.forRoot());
   const config = app.get<ConfigService>(ConfigService);
+
+  // global setting (validator, filter, interceptor, guard)
+  // validator
+  app.useGlobalPipes(
+    new ValidationPipe({
+      whitelist: true,
+      forbidNonWhitelisted: true,
+      transform: true,
+      transformOptions: {
+        enableImplicitConversion: true,
+      },
+    }),
+  );
+  // filter
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   // swagger
   const swaggerConfig = new DocumentBuilder()
