@@ -2,7 +2,7 @@
 
 개발 및 테스트 지원을 위해서, 로컬 환경에 MongoDB를 구동시킬 수 있습니다.
 
-> **note**
+> **Note**
 > 
 > MongoDB는 서비스 목적에 따라 아래 2가지 데이터베이스를 사용합니다.
 > - 이벤트 스토어
@@ -28,7 +28,7 @@
 
 아래 명령어를 사용해서 구동시킬 수 있습니다.
 
-> **note**
+> **Note**
 > 
 > [docker-compose](https://docs.docker.com/compose/install/)가 설치되어 있어야 합니다.
 
