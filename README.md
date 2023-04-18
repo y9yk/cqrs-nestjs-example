@@ -13,6 +13,11 @@
 $ npm install
 ```
 
+### Local DB Installation
+
+- 개발 및 테스트 지원을 위해서, 로컬 환경에 MongoDB를 구동시킬 수 있습니다.
+- 자세한 방법은 [Local DB Installation](/docker)을 참고하세요.
+
 ## Running the app
 
 - 개발 환경에서 Swagger를 지원하고 있습니다.

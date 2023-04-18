@@ -1,4 +1,4 @@
-# Local DB Setting
+# Local DB Installation
 
 개발 및 테스트 지원을 위해서, 로컬 환경에 MongoDB를 구동시킬 수 있습니다.
 
