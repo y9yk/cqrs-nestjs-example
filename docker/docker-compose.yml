@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  service-db:
+    image: mongo:latest
+    container_name: service_db
+    ports:
+      - 27017:27017
+    volumes:
+      - ./db/service_data:/data/db
+    env_file:
+      - ./db/.service.env
+  eventstore-db:
+    image: mongo:latest
+    container_name: eventstore_db
+    ports:
+      - 27018:27017
+    volumes:
+      - ./db/eventstore_data:/data/db
+    env_file:
+      - ./db/.eventstore.env
