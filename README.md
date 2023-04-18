@@ -16,7 +16,7 @@ $ npm install
 ## Running the app
 
 - 개발 환경에서 Swagger를 지원하고 있습니다.
-  - http://localhost:8080/docs에서 지원하는 API 목록을 확인할 수 있습니다.
+  - `http://localhost:8080/docs`에서 지원하는 API 목록을 확인할 수 있습니다.
 
 ```bash
 # development
