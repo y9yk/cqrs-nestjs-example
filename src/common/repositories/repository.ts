@@ -23,6 +23,13 @@ export class Repository<T extends Document> {
     return await this.model.find(filter, null, options);
   }
 
+  async findOne(
+    filter: FilterQuery<T>,
+    options?: QueryOptions,
+  ): Promise<T | null> {
+    return await this.model.findOne(filter, null, options);
+  }
+
   async findById(id: string): Promise<T | null> {
     return await this.model.findById(id);
   }
