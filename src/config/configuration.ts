@@ -5,7 +5,7 @@ const getMongoConnectionUrl = (
   password: string,
   database: string,
 ) => {
-  return `mongodb://${username}:${password}@${host}:${port}/${database}?authSource=admin`;
+  return `mongodb://${username}:${password}@${host}:${port}/${database}?authSource=admin&retryWrites=true&w=majority`;
 };
 
 export const configuration = () => ({
