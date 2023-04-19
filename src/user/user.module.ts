@@ -6,16 +6,25 @@ import { UserRepository } from './repositories/user.repository';
 import { QueryHandlers } from './queries/handlers';
 import { CqrsModule } from '@nestjs/cqrs';
 import { SERVICE_DB_CONNECTION_NAME } from 'src/common/constants';
+import { CommandHandlers } from './commands/handlers';
+import { EventHandlers } from './events/handlers';
+import { EventSourcingModule } from 'event-sourcing-nestjs';
 
 @Module({
   imports: [
     CqrsModule,
+    EventSourcingModule.forFeature(),
     MongooseModule.forFeature(
       [{ name: User.name, schema: UserSchema }],
       SERVICE_DB_CONNECTION_NAME,
     ),
   ],
   controllers: [UserController],
-  providers: [...QueryHandlers, UserRepository],
+  providers: [
+    ...CommandHandlers,
+    ...QueryHandlers,
+    ...EventHandlers,
+    UserRepository,
+  ],
 })
 export class UserModule {}
