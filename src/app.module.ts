@@ -17,7 +17,6 @@ import {
   EVENTSTORE_DB_CONNECTION_NAME,
   SERVICE_DB_CONNECTION_NAME,
 } from './common/constants';
-import { EventSourcingModule } from 'event-sourcing-nestjs';
 
 @Module({})
 export class AppModule implements NestModule {
@@ -30,9 +29,6 @@ export class AppModule implements NestModule {
           load: [configuration],
           validationSchema: validationScheme,
           isGlobal: true,
-        }),
-        EventSourcingModule.forRoot({
-          mongoURL: '',
         }),
         MongooseModule.forRootAsync({
           inject: [ConfigService],
