@@ -2,7 +2,6 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetUsersQuery } from '../impl';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { QueryOptions } from 'mongoose';
-import { User } from 'src/user/schemas/user.schema';
 
 @QueryHandler(GetUsersQuery)
 export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
