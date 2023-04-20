@@ -1,26 +1,42 @@
 import { CommandHandler, EventBus, ICommandHandler } from '@nestjs/cqrs';
 import { CreateUserCommand } from '../impl/create-user.command';
 import { UserCreatedEvent } from 'src/user/events/impl/user-created.event';
-import { generateUid } from 'src/common/utils';
+import { UserRepository } from 'src/user/repositories/user.repository';
+import { ConflictException } from 'src/common/exceptions/http.exceptions';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
   constructor(
     // Warning: we do not use store-event-bus
-    // Through using StoreEventBut we can do below jobs.
+    // But through using StoreEventBut we can do below jobs.
     // 1) Store event history to datasource (persist)
     // 2) Delegate event to ViewUpdaters so, we can dispatch the event to use ViewUpdateHandler
+    // This is future work.
     private readonly eventBus: EventBus,
+    private readonly userRepository: UserRepository,
   ) {}
 
   async execute(command: CreateUserCommand): Promise<any> {
-    // create event
-    const eventId = generateUid();
+    // command
     const { name, email, password } = command;
-    const event = new UserCreatedEvent(name, email, password);
-    // publish event
-    this.eventBus.publish(event);
-    // return created event id
-    return eventId;
+    // inspect if user is already created or not
+    const isAlreadyCreatedUser = await this.userRepository.findOne({
+      email,
+    });
+    // process
+    if (isAlreadyCreatedUser) {
+      throw new ConflictException();
+    } else {
+      const ret = await this.userRepository.create({
+        name,
+        email,
+        password,
+      });
+      // create event and publish
+      const event = new UserCreatedEvent(name, email, password);
+      this.eventBus.publish(event);
+      // return
+      return ret;
+    }
   }
 }
