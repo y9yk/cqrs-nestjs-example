@@ -10,7 +10,7 @@ export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
   async execute(query: GetUsersQuery) {
     // create query options
     const queryOptions: QueryOptions = {
-      skip: query.page * query.size,
+      skip: (query.page - 1) * query.size,
       limit: query.size,
     };
     // create sort option
