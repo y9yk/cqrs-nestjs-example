@@ -1,25 +1,26 @@
+import { HttpStatus } from '@nestjs/common';
 import { BaseException } from './base.exception';
 
 export class BadRequestException extends BaseException {
   constructor() {
-    super(400);
+    super(HttpStatus.BAD_REQUEST);
   }
 }
 
 export class UnAuthorizedException extends BaseException {
   constructor() {
-    super(401);
+    super(HttpStatus.UNAUTHORIZED);
   }
 }
 
 export class NotFoundException extends BaseException {
   constructor() {
-    super(404);
+    super(HttpStatus.NOT_FOUND);
   }
 }
 
 export class ConflictException extends BaseException {
   constructor() {
-    super(409);
+    super(HttpStatus.CONFLICT);
   }
 }
