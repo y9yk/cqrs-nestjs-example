@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString } from 'class-validator';
 
-export class CreateUserDto {
+export class CreateUserRequestDto {
   @ApiProperty({
     example: '이용기',
     required: true,
