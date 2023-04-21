@@ -6,6 +6,7 @@ import {
   HttpStatus,
 } from '@nestjs/common';
 import { Response } from 'express';
+import { messages } from '../status.dispatcher';
 
 @Catch()
 export class HttpExceptionFilter implements ExceptionFilter {
@@ -31,7 +32,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
       const statusCode = HttpStatus.INTERNAL_SERVER_ERROR;
       response.status(statusCode).json({
         statusCode,
-        message: 'Internal Server Error',
+        message: messages[statusCode],
         error: exception?.stack,
       });
     }
