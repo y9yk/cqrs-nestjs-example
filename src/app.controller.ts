@@ -4,6 +4,6 @@ import { Controller, Get } from '@nestjs/common';
 export class AppController {
   @Get()
   getHello(): string {
-    return `Hello there! This project is event-sourcing-cqrs-nestjs-example.`;
+    return `Hello there! This project is cqrs-nestjs-example.`;
   }
 }

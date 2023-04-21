@@ -29,7 +29,7 @@ async function bootstrap() {
   const swaggerConfig = new DocumentBuilder()
     .setTitle(config.get('service.name'))
     .setDescription(
-      `Event-sourcing and CQRS Implementation Example using Nest.js`,
+      `CQRS Implementation Example using Nest.js`,
     )
     .setVersion(`1.0`)
     .addBearerAuth(

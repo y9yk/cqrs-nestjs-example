@@ -29,7 +29,7 @@
 ## Example
 
 ```env
-SERVICE_NAME=event-sourcing-cqrs-nestjs-example
+SERVICE_NAME=cqrs-nestjs-example
 SERVICE_PORT=8080
 
 MONGO_SERVICE_HOST=localhost

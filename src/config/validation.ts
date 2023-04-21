@@ -8,7 +8,7 @@ export const validationScheme = Joi.object({
     'provision',
   ),
   // service
-  SERVICE_NAME: Joi.string().default('event-sourcing-cqrs-nestjs-example'),
+  SERVICE_NAME: Joi.string().default('cqrs-nestjs-example'),
   SERVICE_PORT: Joi.number().default(8080),
   SERVICE_KEEP_ALIVE_TIMEOUT: Joi.number().default(620),
   // db (service)
