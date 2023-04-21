@@ -1,6 +1,6 @@
-# event-sourcing-cqrs-nestjs-example
+# cqrs-nestjs-example
 
-[Event-sourcing](https://learn.microsoft.com/ko-kr/azure/architecture/patterns/event-sourcing) 및 [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation)를 지원하는 서비스 코드 예제입니다.
+[CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation)를 지원하는 서비스 코드 예제입니다.
 
 ## Configuration
 
