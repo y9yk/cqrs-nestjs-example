@@ -6,6 +6,6 @@ import { UserCreatedEvent } from '../impl/user-created.event';
 export class UserCreatedHandler implements IEventHandler<UserCreatedEvent> {
   handle(event: UserCreatedEvent) {
     // inspect event or notification
-    console.log(`User Created: ${event}`);
+    console.log(`User Created: ${event.toString()}`);
   }
 }
