@@ -1,26 +1,26 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { GetUsersQuery } from '../impl';
-import { UserRepository } from 'src/user/repositories/user.repository';
-import { QueryOptions } from 'mongoose';
+import { UserService } from 'src/user/services/user.service';
+import { success } from 'src/common/status.dispatcher';
+import { GetUsersResponseDto } from 'src/user/dto/user.response.dto';
 
 @QueryHandler(GetUsersQuery)
 export class GetUsersHandler implements IQueryHandler<GetUsersQuery> {
-  constructor(private readonly userRepository: UserRepository) {}
+  constructor(private readonly userService: UserService) {}
 
-  async execute(query: GetUsersQuery) {
-    // create query options
-    const queryOptions: QueryOptions = {
-      skip: (query.page - 1) * query.size,
-      limit: query.size,
-    };
-    // create sort option
-    // It can be validated through using @IsIn annotation in DTO
-    const { sortField, sortOrder } = query;
-    if (sortField && sortOrder) {
-      const sort = {};
-      sort[query.sortField] = query.sortOrder;
-      queryOptions.sort = sort;
-    }
-    return await this.userRepository.find(null, queryOptions);
+  async execute(query: GetUsersQuery): Promise<GetUsersResponseDto> {
+    // get params from query
+    const { name, email, page, size, sortField, sortOrder } = query;
+    // get users
+    const users = await this.userService.getUsers({
+      name,
+      email,
+      page,
+      size,
+      sortField,
+      sortOrder,
+    });
+    // return
+    return success(users);
   }
 }
