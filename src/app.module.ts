@@ -13,10 +13,7 @@ import { HealthModule } from './health/health.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { configuration } from './config/configuration';
 import { HttpLoggingMiddleware } from './common/middlewares/http.logging.middleware';
-import {
-  EVENTSTORE_DB_CONNECTION_NAME,
-  SERVICE_DB_CONNECTION_NAME,
-} from './common/constants';
+import { SERVICE_DB_CONNECTION_NAME } from './common/constants';
 
 @Module({})
 export class AppModule implements NestModule {
@@ -29,13 +26,6 @@ export class AppModule implements NestModule {
           load: [configuration],
           validationSchema: validationScheme,
           isGlobal: true,
-        }),
-        MongooseModule.forRootAsync({
-          inject: [ConfigService],
-          connectionName: EVENTSTORE_DB_CONNECTION_NAME,
-          useFactory: async (configService: ConfigService) => ({
-            uri: configService.get<string>('db.eventstore.uri'),
-          }),
         }),
         MongooseModule.forRootAsync({
           inject: [ConfigService],
