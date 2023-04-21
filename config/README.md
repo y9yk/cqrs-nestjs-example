@@ -17,11 +17,6 @@
 | MONGO_SERVICE_USERNAME    | MongoDB 사용자 이름 (일반)       |
 | MONGO_SERVICE_PASSWORD    | MongoDB 사용자 비밀번호 (일반)     |
 | MONGO_SERVICE_DATABASE    | MongoDB 데이터베이스 (일반)       |
-| MONGO_EVENTSTORE_HOST     | MongoDB 호스트 (이벤트스토어)      |
-| MONGO_EVENTSTORE_PORT     | MongoDB 서비스 포트 (이벤트스토어)   |
-| MONGO_EVENTSTORE_USERNAME | MongoDB 사용자 이름 (이벤트스토어)   |
-| MONGO_EVENTSTORE_PASSWORD | MongoDB 사용자 비밀번호 (이벤트스토어) |
-| MONGO_EVENTSTORE_DATABASE | MongoDB 데이터베이스 (이벤트스토어)   |
 | JWT_SECRET                | jwt 시크릿                   |
 | JWT_EXPIRES_IN            | jwt 만료시간                  |
 | LOG_LEVEL                 | 서비스 로그 레벨                 |
@@ -38,14 +33,8 @@ MONGO_SERVICE_USERNAME=root
 MONGO_SERVICE_PASSWORD=1234
 MONGO_SERVICE_DATABASE=service
 
-MONGO_EVENTSTORE_HOST=localhost
-MONGO_EVENTSTORE_PORT=27018
-MONGO_EVENTSTORE_USERNAME=root
-MONGO_EVENTSTORE_PASSWORD=1234
-MONGO_EVENTSTORE_DATABASE=eventstore
-
 JWT_SECRET=jwt_secret
-JWT_EXPIRES_IN=3600
+JWT_EXPIRES_IN=3600000
 
 LOG_LEVEL=debug
 ```
