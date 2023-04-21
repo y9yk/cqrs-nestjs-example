@@ -3,6 +3,7 @@ import { CreateUserCommand } from '../impl/create-user.command';
 import { UserCreatedEvent } from 'src/user/events/impl/user-created.event';
 import { UserRepository } from 'src/user/repositories/user.repository';
 import { ConflictException } from 'src/common/exceptions/http.exceptions';
+import { getCurrentTime, getHashedPassword } from 'src/common/utils';
 
 @CommandHandler(CreateUserCommand)
 export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
@@ -27,13 +28,16 @@ export class CreateUserHandler implements ICommandHandler<CreateUserCommand> {
     if (isAlreadyCreatedUser) {
       throw new ConflictException();
     } else {
+      // get hashed-password
+      const hashedPassword = await getHashedPassword(password);
+      // create user
       const ret = await this.userRepository.create({
         name,
         email,
-        password,
+        password: hashedPassword,
       });
       // create event and publish
-      const event = new UserCreatedEvent(name, email, password);
+      const event = new UserCreatedEvent(name, email, getCurrentTime());
       this.eventBus.publish(event);
       // return
       return ret;
