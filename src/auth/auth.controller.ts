@@ -18,11 +18,11 @@ import {
 } from 'src/common/dto/base.response.dto';
 
 @ApiTags('Auth Service')
-@Controller('auth')
 @ApiBadRequestResponse({ type: BadRequesExceptionResponseDto })
 @ApiInternalServerErrorResponse({
   type: InternalServerErrorExceptionResponseDto,
 })
+@Controller('auth')
 export class AuthController {
   constructor(private readonly commandBus: CommandBus) {}
 
