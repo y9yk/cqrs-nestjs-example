@@ -7,6 +7,7 @@ import {
   MongooseHealthIndicator,
 } from '@nestjs/terminus';
 import { Connection } from 'mongoose';
+import { SERVICE_DB_CONNECTION_NAME } from 'src/common/constants';
 
 @ApiTags('Health Checking')
 @Controller('health')
@@ -15,9 +16,7 @@ export class HealthController {
     private health: HealthCheckService,
     // db
     private db: MongooseHealthIndicator,
-    @InjectConnection('eventstore')
-    private eventStoreConnection: Connection,
-    @InjectConnection('service')
+    @InjectConnection(SERVICE_DB_CONNECTION_NAME)
     private serviceConnection: Connection,
   ) {}
 
@@ -26,11 +25,6 @@ export class HealthController {
   @HealthCheck()
   check() {
     return this.health.check([
-      () =>
-        this.db.pingCheck('eventstore-db-connection', {
-          connection: this.eventStoreConnection,
-          timeout: 1500, // timeout 1500ms
-        }),
       () =>
         this.db.pingCheck('service-db-connection', {
           connection: this.serviceConnection,
