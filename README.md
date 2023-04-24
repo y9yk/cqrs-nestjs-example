@@ -1,8 +1,10 @@
 # cqrs-nestjs-example
 
+![CQRS Architecture](resources/images/cqrs_architecture.png)
+
+
 [CQRS](https://en.wikipedia.org/wiki/Command%E2%80%93query_separation)를 지원하는 서비스 코드 예제입니다.
 
-![CQRS Architecture](resources/images/cqrs_architecture.png){: width="60%"}
 
 - Command와 Read를 분리하는 데 의의를 두고 있습니다.
 - 이 Repository에서는 실제로 Write/Read 데이터베이스를 나누고 있지는 않습니다.
